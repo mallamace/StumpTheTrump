@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">Stump The Trump</string>
+
+    <string name="q1text">Q1: Donald Trump is no longer the host of Celebrity Apprentice. Who did NBC name as his replacement?</string>
+    <string name="q2text">Q2: Which of the following countries have been part of President Trump’s travel ban?</string>
+    <string name="q3text">Q3: In which month did Donald Trump formally announce his candidacy for the Republican nomination for president?</string>
+    <string name="q4text">Q4: How many siblings does Donald Trump have? (numeric value only)</string>
+    <string name="q5text">Q5: What is the name of Donald Trump\'s best selling 1987 memoir and business advice book?</string>
+    <string name="q6text">Q6: What is the name of the military school Donald Trump attended in his youth?</string>
+    <string name="q7text">Q7: What did Forbes estimate as Donald Trump\'s net worth in 2015?</string>
+    <string name="q8text">Q8:  In what year did NBC first launch \'The Apprentice\' </string>
+    <string name="q9text">Q9: How many times has Donald Trump been married? (numeric value only)</string>
+    <string name="q10text">Q10:  What is Donald Trump\'s official 2016 campaign slogan?</string>
+    <string name="q1a1text">Mark Cuban</string>
+    <string name="q1a2text">Martha Stewart</string>
+    <string name="q1a3text">Bill Maher</string>
+    <string name="q1a4text">Arnold Schwarzenegger</string>
+    <string name="q2a1text">Iran</string>
+    <string name="q2a2text">North Korea</string>
+    <string name="q2a3text">Syria</string>
+    <string name="q2a4text">Egypt</string>
+
+
+    <string name="answertext">Type Your Answer</string>
+    <string name="checkbutton">CHECK ANSWER</string>
+
+    <string name="q5a1text">How To Get Rich</string>
+    <string name="q5a2text">You\'re Hired</string>
+    <string name="q5a3text">The Art of the Deal</string>
+    <string name="q5a4text">Trump Takes Manhattan</string>
+
+
+    <string name="q6a1text">Leonard Hall Junior Naval Academy</string>
+    <string name="q6a2text">Summerlin Military Academy</string>
+    <string name="q6a3text">Fishburne Military School</string>
+    <string name="q6a4text">New York Military Academy</string>
+
+
+    <string name="q7a1text">$590 million</string>
+    <string name="q7a2text">$1 billion</string>
+    <string name="q7a3text">$4 billion</string>
+    <string name="q7a4text">$10 billion</string>
+
+
+    <string name="q8a1text">2000</string>
+    <string name="q8a2text">2003</string>
+    <string name="q8a3text">2007</string>
+    <string name="q8a4text">2010</string>
+
+
+    <string name="q10a1text">\"Reigniting the Promise of America\"</string>
+    <string name="q10a2text">\"Let America be America Again\"</string>
+    <string name="q10a3text">\"Believe in America\"</string>
+    <string name="q10a4text">\"Make America Great Again\"</string>
+
+    <string name="thedon">The Don would be proud!</string>
+
+
+    <string name="fakenews">"Fake News! Try Again!"</string>
+
+        <string-array name="month_array">
+            <item>--- SELECT ONE ---</item>
+            <item>January</item>
+            <item>February</item>
+            <item>March</item>
+            <item>April</item>
+            <item>May</item>
+            <item>June</item>
+            <item>July</item>
+            <item>August</item>
+            <item>September</item>
+            <item>October</item>
+            <item>November</item>
+            <item>December</item>
+        </string-array>
+
+
+
+</resources>
