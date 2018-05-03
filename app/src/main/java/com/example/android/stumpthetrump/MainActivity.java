@@ -1,16 +1,10 @@
 package com.example.android.stumpthetrump;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
+
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -103,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
         {
             for(column = 0; column < 1; column++)
             {
-
-                //Toast.makeText(this, ""+ids[row][column], Toast.LENGTH_SHORT).show();
 
                 if(ids[row][0] == R.id.q4 && ids[row][1] != 1 && resId.equals("q4button")){
 

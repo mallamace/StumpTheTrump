@@ -1,12 +1,8 @@
 package com.example.android.stumpthetrump;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -25,6 +21,7 @@ public class Start_dialog extends Dialog {
 
     /**
      *
+     * @param context - pass in context to display getString()
      * @param scoreVal - get the total score for display in the dialog box
      * @param questionTotal - check to see how many total questions there are
      */
