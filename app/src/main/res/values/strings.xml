@@ -56,7 +56,10 @@
     <string name="thedon">The Don would be proud!</string>
 
 
-    <string name="fakenews">"Fake News! Try Again!"</string>
+    <string name="flavorTheDon">"The Don Would be Proud"</string>
+    <string name="flavorHuge">"That's Huuuuge!"</string>
+    <string name="flavorPresidential">"Not Quite Presidential Stuff"</string>
+    <string name="flavorNews">"Fake News! Try Again!"</string>
 
         <string-array name="month_array">
             <item>--- SELECT ONE ---</item>

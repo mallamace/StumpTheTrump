@@ -15,26 +15,20 @@ import android.widget.TextView;
 
 public class Start_dialog extends Dialog {
 
-
-
     public Start_dialog(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
-        /** 'Window.FEATURE_NO_TITLE' - Used to hide the title */
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        /** Design the dialog in main.xml file */
+
         setContentView(R.layout.popup);
-
-        //Button dismissButton = (Button) findViewById(R.id.dismiss);
     }
-
 
     /**
      *
      * @param scoreVal - get the total score for display in the dialog box
      * @param questionTotal - check to see how many total questions there are
      */
-    public void setScore(int scoreVal, int questionTotal){
+    public void setScore(Context context, int scoreVal, int questionTotal){
 
 
         String flavorText;
@@ -43,20 +37,19 @@ public class Start_dialog extends Dialog {
 
         if (scoreVal == questionTotal){
 
-            flavorText = "The Don Would be Proud";
+            flavorText = context.getResources().getString(R.string.flavorTheDon);
 
         } else if (scoreVal >= 5){
 
-            flavorText = "That's Huuuuge!";
+            flavorText = context.getResources().getString(R.string.flavorHuge);
 
         } else if (scoreVal >= 2){
 
-            flavorText = "Not Quite Presidential Stuff";
+            flavorText = context.getResources().getString(R.string.flavorPresidential);
+
         } else {
 
-            flavorText = "Fake News! Try Again!";
-            //flavorText = getString(R.string.fakenews);  I CANNOT GET THIS TO WORK, "getString" is not recognized.
-
+            flavorText = context.getResources().getString(R.string.flavorNews);
         }
 
         TextView setMessageText = (TextView) findViewById(R.id.messageText);

@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
         if(questionCount == 10){
 
             Start_dialog start_dialog = new Start_dialog(this);
-            start_dialog.setScore(scoreVal, questionCount);
+            start_dialog.setScore(this, scoreVal, questionCount);
             start_dialog.setTitle("Your Score");
             start_dialog.show();
 
