@@ -461,6 +461,14 @@
                         android:text="@string/q10a4text" />
                 </RadioGroup>
 
+
+                <Button
+                    android:id="@+id/submitButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SUBMIT"
+                    android:onClick="questionCount"/>
+
             </LinearLayout>
 
         </ScrollView>

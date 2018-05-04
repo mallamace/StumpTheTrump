@@ -29,7 +29,7 @@ public class Start_dialog extends Dialog {
 
 
         String flavorText;
-        TextView setScoreText = (TextView) findViewById(R.id.scoreText);
+        TextView setScoreText = findViewById(R.id.scoreText);
         setScoreText.setText(scoreVal+"/"+questionTotal);
 
         if (scoreVal == questionTotal){
@@ -49,7 +49,7 @@ public class Start_dialog extends Dialog {
             flavorText = context.getResources().getString(R.string.flavorNews);
         }
 
-        TextView setMessageText = (TextView) findViewById(R.id.messageText);
+        TextView setMessageText = findViewById(R.id.messageText);
         setMessageText.setText(flavorText);
     }
 }

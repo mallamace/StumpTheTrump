@@ -18,16 +18,13 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    int scoreVal = 0;
+    int scoreVal;
     String aSelected = "";
     String qSelected = "";
     View radioButton;
     RadioGroup radioGroup;
-    int[][] ids = { {R.id.q4, 0}, {R.id.q9, 0}};
-    int questionCount = 0; //track the number of questions answered
-
-
+    int[][] textQuestionArray = { {R.id.q4, 0}, {R.id.q9, 0}}; //q4 = question #4, q9 = question #9
+    //TODO int questionCount; //track the number of questions answered
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //get the spinner from the xml.
-        final Spinner dropdown = (Spinner) findViewById(R.id.q3);
+        final Spinner dropdown = findViewById(R.id.q3);
         //create a list of items for the spinner.
 
         Resources res = getResources();
@@ -44,37 +41,32 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
-
-
+        
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // this was copied code to create a Spinner/Dropdown
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
 
                 if (pos == 6){ //  Check for correct Answer in position #6
 
-                   Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(), getString(R.string.correctText), Toast.LENGTH_SHORT).show();
                     dropdown.setBackgroundColor(Color.GREEN);
 
                     scoreVal += 1;
-                    questionCount(); // add to question count and check if completed
+                    //questionCount(); // add to question count and check if completed
                     dropdown.setEnabled(false);
 
                 } else if(pos !=0){ //  Check for any incorrect answer except for default position 0
 
-                    Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.incorrectText), Toast.LENGTH_SHORT).show();
                     dropdown.setBackgroundColor(Color.RED);
                     dropdown.setEnabled(false);
-                    questionCount(); // add to question count and check if completed
+                    //questionCount(); // add to question count and check if completed
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
-
-
-
-
 
     /**
      * This is an incredibly long method to determine the values from a array matrix. I honestly count not find a better way to
@@ -87,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onTexEditCheck(View view){
 
-        int bId = view.getId();
-        Button buttonVal = (Button) findViewById(bId);
-        String resId = getResources().getResourceEntryName(bId);
+        int buttonId = view.getId();
+        Button buttonVal = findViewById(buttonId);
+        String resId = getResources().getResourceEntryName(buttonId);
 
         int row, column;
 
@@ -98,60 +90,59 @@ public class MainActivity extends AppCompatActivity {
             for(column = 0; column < 1; column++)
             {
 
-                if(ids[row][0] == R.id.q4 && ids[row][1] != 1 && resId.equals("q4button")){
+                if(textQuestionArray[row][0] == R.id.q4 && textQuestionArray[row][1] != 1 && resId.equals("q4button")){
 
                     //check answer for q4
-                    EditText et = (EditText) findViewById(R.id.q4);
-                    String textAnswer = et.getText().toString();
+                    EditText q4EditTextVal = findViewById(R.id.q4);
+                    String textAnswer = q4EditTextVal.getText().toString();
                     textAnswer = textAnswer.toLowerCase();
 
                     if(textAnswer.equals(""+checkKey(resId))){
 
-                        Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
-                        et.setBackgroundColor(Color.GREEN);
+                        Toast.makeText(this, getString(R.string.correctText), Toast.LENGTH_SHORT).show();
+                        q4EditTextVal.setBackgroundColor(Color.GREEN);
 
                         scoreVal += 1;
 
                     }else{
 
-                        Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
-                        et.setBackgroundColor(Color.RED);
+                        Toast.makeText(this, getString(R.string.incorrectText), Toast.LENGTH_SHORT).show();
+                        q4EditTextVal.setBackgroundColor(Color.RED);
                     }
 
-                    et.setEnabled(false);
+                    q4EditTextVal.setEnabled(false);
 
-                    ids[row][1] = 1; //mark that we've set an answer for q4
+                    textQuestionArray[row][1] = 1; //mark that we've set an answer for q4
                 }
 
-                if(ids[row][column] == R.id.q9 && ids[row][1] != 1 && resId.equals("q9button")){
+                if(textQuestionArray[row][column] == R.id.q9 && textQuestionArray[row][1] != 1 && resId.equals("q9button")){
 
-                    EditText et = (EditText) findViewById(R.id.q9);
-                    String textAnswer = et.getText().toString();
+                    EditText q9EditTextVal = findViewById(R.id.q9);
+                    String textAnswer = q9EditTextVal.getText().toString();
                     textAnswer = textAnswer.toLowerCase();
 
                     if(textAnswer.equals(""+checkKey(resId))){
 
-                        Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
-                        et.setBackgroundColor(Color.GREEN);
+                        Toast.makeText(this, getString(R.string.correctText), Toast.LENGTH_SHORT).show();
+                        q9EditTextVal.setBackgroundColor(Color.GREEN);
 
                         scoreVal += 1;
 
                     }else{
 
-                        Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
-                        et.setBackgroundColor(Color.RED);
+                        Toast.makeText(this, getString(R.string.incorrectText), Toast.LENGTH_SHORT).show();
+                        q9EditTextVal.setBackgroundColor(Color.RED);
                     }
 
-                    et.setEnabled(false);
-                    ids[row][1] = 1; //mark that we've set an answer for q9
+                    q9EditTextVal.setEnabled(false);
+                    textQuestionArray[row][1] = 1; //mark that we've set an answer for q9
                 }
             }
         }
 
         buttonVal.setEnabled(false);
-        questionCount(); // add to question count and check if completed
+        //questionCount(); // add to question count and check if completed
     }
-
 
     /**
      *
@@ -159,21 +150,20 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onRadioButtonClicked(View view) {
 
-        int bId = view.getId();
-        RadioButton rSelected = (RadioButton) findViewById(bId);
-        int gId = ((View) rSelected.getParent()).getId();
+        int radioButtonId = view.getId();
+        RadioButton rSelected = findViewById(radioButtonId);
+        int radioButtonGroupId = ((View) rSelected.getParent()).getId();
 
-        radioGroup  = (RadioGroup) findViewById(gId);
+        radioGroup  = findViewById(radioButtonGroupId);
         int radioButtonID = radioGroup.getCheckedRadioButtonId();
         radioButton = radioGroup.findViewById(radioButtonID);
-        int idx = radioGroup.indexOfChild(radioButton);
-        RadioButton r1 = (RadioButton)  radioGroup.getChildAt(idx);
-        qSelected = getResources().getResourceEntryName(gId);
-        aSelected = r1.getText().toString();
+        int radioButtonGroupVal = radioGroup.indexOfChild(radioButton);
+        RadioButton radioButtonVal = (RadioButton)  radioGroup.getChildAt(radioButtonGroupVal);
+        qSelected = getResources().getResourceEntryName(radioButtonGroupId);
+        aSelected = radioButtonVal.getText().toString();
 
-        checkAnswer(qSelected,idx);
+        checkAnswer(qSelected,radioButtonGroupVal);
     }
-
 
     /**
      *
@@ -185,13 +175,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(qSelected.equals(stringVal) && intVal == checkKey(stringVal)){
 
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.correctText), Toast.LENGTH_SHORT).show();
             radioButton.setBackgroundColor(Color.GREEN);
             scoreVal += 1;
 
         } else {
 
-            Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.incorrectText), Toast.LENGTH_SHORT).show();
             radioButton.setBackgroundColor(Color.RED);
         }
 
@@ -199,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             radioGroup.getChildAt(i).setEnabled(false);
         }
 
-        questionCount(); // add to question count and check if completed
+        //questionCount(); // add to question count and check if completed
     }
 
 
@@ -229,10 +219,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onCheckboxButtonClicked(View view) {
         // Is the button now checked?
-        CheckBox checkedQ1 = (CheckBox) findViewById(R.id.q2a1);
-        CheckBox checkedQ2 = (CheckBox) findViewById(R.id.q2a2);
-        CheckBox checkedQ3 = (CheckBox) findViewById(R.id.q2a3);
-        CheckBox checkedQ4 = (CheckBox) findViewById(R.id.q2a4);
+        CheckBox checkedQ1 = findViewById(R.id.q2a1);
+        CheckBox checkedQ2 = findViewById(R.id.q2a2);
+        CheckBox checkedQ3 = findViewById(R.id.q2a3);
+        CheckBox checkedQ4 = findViewById(R.id.q2a4);
 
         if(checkedQ1.isChecked()){
 
@@ -253,10 +243,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(checkedQ1.isChecked() && checkedQ2.isChecked() && checkedQ3.isChecked()){
 
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.correctText), Toast.LENGTH_SHORT).show();
             checkedQ4.setEnabled(false);
             scoreVal += 1;
-            questionCount(); // add to question count and check if completed
+            //questionCount(); // add to question count and check if completed
         }
 
 
@@ -267,9 +257,9 @@ public class MainActivity extends AppCompatActivity {
             checkedQ3.setEnabled(false);
             checkedQ4.setEnabled(false);
             checkedQ4.setBackgroundColor(Color.RED);
-            Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.incorrectText), Toast.LENGTH_SHORT).show();
 
-            questionCount(); // add to question count and check if completed
+            //questionCount(); // add to question count and check if completed
 
         }
     }
@@ -279,21 +269,21 @@ public class MainActivity extends AppCompatActivity {
      *  Once a question has been answered, either correct or incorrect count it, and check for total
      *  If we have reached total questions then create a dialog box and display results with flavor text
      */
-    public void questionCount(){
+    public void questionCount(View view){
 
-        questionCount += 1;
+        //questionCount += 1;
 
-        if(questionCount == 10){
+        //if(questionCount == 10){
 
             Start_dialog start_dialog = new Start_dialog(this);
-            start_dialog.setScore(this, scoreVal, questionCount);
-            start_dialog.setTitle("Your Score");
+            start_dialog.setScore(this, scoreVal, 10); //removed questionCount variable
+            start_dialog.setTitle(getString(R.string.yourScoreText));
             start_dialog.show();
 
             //display results
             Toast.makeText(this, "Your Score: "+scoreVal+"/10", Toast.LENGTH_SHORT).show();
 
-        }
+        //}
     }
 }
 

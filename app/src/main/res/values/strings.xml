@@ -61,6 +61,11 @@
     <string name="flavorPresidential">"Not Quite Presidential Stuff"</string>
     <string name="flavorNews">"Fake News! Try Again!"</string>
 
+
+    <string name="correctText">Correct!</string>
+    <string name="incorrectText">Incorrect</string>
+
+    <string name="yourScoreText">Your Score</string>
     <string name="scoreText">10/10</string>
 
         <string-array name="month_array">
