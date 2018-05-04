@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     View radioButton;
     RadioGroup radioGroup;
     int[][] textQuestionArray = { {R.id.q4, 0}, {R.id.q9, 0}}; //q4 = question #4, q9 = question #9
-    //TODO int questionCount; //track the number of questions answered
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
-        
+
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // this was copied code to create a Spinner/Dropdown
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                     dropdown.setBackgroundColor(Color.GREEN);
 
                     scoreVal += 1;
-                    //questionCount(); // add to question count and check if completed
                     dropdown.setEnabled(false);
 
                 } else if(pos !=0){ //  Check for any incorrect answer except for default position 0
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.incorrectText), Toast.LENGTH_SHORT).show();
                     dropdown.setBackgroundColor(Color.RED);
                     dropdown.setEnabled(false);
-                    //questionCount(); // add to question count and check if completed
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -139,9 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
         buttonVal.setEnabled(false);
-        //questionCount(); // add to question count and check if completed
     }
 
     /**
@@ -172,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void checkAnswer (String stringVal, int intVal){
 
-
         if(qSelected.equals(stringVal) && intVal == checkKey(stringVal)){
 
             Toast.makeText(this, getString(R.string.correctText), Toast.LENGTH_SHORT).show();
@@ -188,10 +182,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(false);
         }
-
-        //questionCount(); // add to question count and check if completed
     }
-
 
     /**
      *
@@ -211,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
 
         return 0;
     }
-
 
     /**
      *
@@ -240,15 +230,12 @@ public class MainActivity extends AppCompatActivity {
             checkedQ3.setBackgroundColor(Color.GREEN);
         }
 
-
         if(checkedQ1.isChecked() && checkedQ2.isChecked() && checkedQ3.isChecked()){
 
             Toast.makeText(this, getString(R.string.correctText), Toast.LENGTH_SHORT).show();
             checkedQ4.setEnabled(false);
             scoreVal += 1;
-            //questionCount(); // add to question count and check if completed
         }
-
 
         if(checkedQ4.isChecked()){
 
@@ -258,32 +245,22 @@ public class MainActivity extends AppCompatActivity {
             checkedQ4.setEnabled(false);
             checkedQ4.setBackgroundColor(Color.RED);
             Toast.makeText(this, getString(R.string.incorrectText), Toast.LENGTH_SHORT).show();
-
-            //questionCount(); // add to question count and check if completed
-
         }
     }
-
 
     /**
      *  Once a question has been answered, either correct or incorrect count it, and check for total
      *  If we have reached total questions then create a dialog box and display results with flavor text
      */
-    public void questionCount(View view){
+    public void questionCount(View view) {
 
-        //questionCount += 1;
+        Start_dialog start_dialog = new Start_dialog(this);
+        start_dialog.setScore(this, scoreVal, 10);
+        start_dialog.setTitle(getString(R.string.yourScoreText));
+        start_dialog.show();
 
-        //if(questionCount == 10){
-
-            Start_dialog start_dialog = new Start_dialog(this);
-            start_dialog.setScore(this, scoreVal, 10); //removed questionCount variable
-            start_dialog.setTitle(getString(R.string.yourScoreText));
-            start_dialog.show();
-
-            //display results
-            Toast.makeText(this, "Your Score: "+scoreVal+"/10", Toast.LENGTH_SHORT).show();
-
-        //}
+        //display results
+        Toast.makeText(this, "Your Score: " + scoreVal + "/10", Toast.LENGTH_SHORT).show();
     }
 }
 
